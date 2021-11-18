@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<telco:Plan xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:telco="http://www.example.org/telco" xmi:id="_rFRRsMguEeurvNNWCb40yg" name="Plan1">
+  <station xmi:id="_rFRRscguEeurvNNWCb40yg" Capacity="100" S_Cost="9" M_Cost="15" E_Cost="8" Sid="s1"/>
+  <station xmi:id="_rFRRssguEeurvNNWCb40yg" Capacity="50" S_Cost="5" M_Cost="12" E_Cost="7" Sid="s2"/>
+  <station xmi:id="_rFRRs8guEeurvNNWCb40yg" Capacity="30" S_Cost="3" M_Cost="9" E_Cost="2" Sid="s3"/>
+  <location xmi:id="_rFRRtcguEeurvNNWCb40yg" Demand="40" T_Pout="8" T_CC="60" T_LCR="55" D_Cost="45" Lid="l1"/>
+  <location xmi:id="_rFRRtMguEeurvNNWCb40yg" Demand="20" T_Pout="6" T_CC="75" T_LCR="60" D_Cost="50" Lid="l2"/>
+  <cc xmi:id="_rFRRtsguEeurvNNWCb40yg" station="_rFRRscguEeurvNNWCb40yg" location="_rFRRtcguEeurvNNWCb40yg" value="99"/>
+  <cc xmi:id="_rFRRt8guEeurvNNWCb40yg" station="_rFRRscguEeurvNNWCb40yg" location="_rFRRtMguEeurvNNWCb40yg" value="99"/>
+  <cc xmi:id="_rFRRuMguEeurvNNWCb40yg" station="_rFRRssguEeurvNNWCb40yg" location="_rFRRtcguEeurvNNWCb40yg" value="73"/>
+  <cc xmi:id="_rFRRucguEeurvNNWCb40yg" station="_rFRRssguEeurvNNWCb40yg" location="_rFRRtMguEeurvNNWCb40yg" value="72"/>
+  <cc xmi:id="_rFRRusguEeurvNNWCb40yg" station="_rFRRs8guEeurvNNWCb40yg" location="_rFRRtcguEeurvNNWCb40yg" value="74"/>
+  <cc xmi:id="_rFRRu8guEeurvNNWCb40yg" station="_rFRRs8guEeurvNNWCb40yg" location="_rFRRtMguEeurvNNWCb40yg" value="71"/>
+  <lcr xmi:id="_rFRRvMguEeurvNNWCb40yg" value="90" station="_rFRRscguEeurvNNWCb40yg" location="_rFRRtcguEeurvNNWCb40yg"/>
+  <lcr xmi:id="_rFRRvcguEeurvNNWCb40yg" value="95" station="_rFRRscguEeurvNNWCb40yg" location="_rFRRtMguEeurvNNWCb40yg"/>
+  <lcr xmi:id="_rFRRvsguEeurvNNWCb40yg" value="63" station="_rFRRssguEeurvNNWCb40yg" location="_rFRRtcguEeurvNNWCb40yg"/>
+  <lcr xmi:id="_rFRRv8guEeurvNNWCb40yg" value="22" station="_rFRRssguEeurvNNWCb40yg" location="_rFRRtMguEeurvNNWCb40yg"/>
+  <lcr xmi:id="_rFRRwMguEeurvNNWCb40yg" value="74" station="_rFRRs8guEeurvNNWCb40yg" location="_rFRRtcguEeurvNNWCb40yg"/>
+  <lcr xmi:id="_rFRRwcguEeurvNNWCb40yg" value="71" station="_rFRRs8guEeurvNNWCb40yg" location="_rFRRtMguEeurvNNWCb40yg"/>
+  <pout xmi:id="_rFRRwsguEeurvNNWCb40yg" station="_rFRRscguEeurvNNWCb40yg" location="_rFRRtcguEeurvNNWCb40yg" value="4"/>
+  <pout xmi:id="_rFRRw8guEeurvNNWCb40yg" station="_rFRRscguEeurvNNWCb40yg" location="_rFRRtMguEeurvNNWCb40yg" value="5"/>
+  <pout xmi:id="_rFRRxMguEeurvNNWCb40yg" station="_rFRRssguEeurvNNWCb40yg" location="_rFRRtcguEeurvNNWCb40yg" value="3"/>
+  <pout xmi:id="_rFRRxcguEeurvNNWCb40yg" station="_rFRRssguEeurvNNWCb40yg" location="_rFRRtMguEeurvNNWCb40yg" value="2"/>
+  <pout xmi:id="_rFRRxsguEeurvNNWCb40yg" station="_rFRRs8guEeurvNNWCb40yg" location="_rFRRtcguEeurvNNWCb40yg" value="4"/>
+  <pout xmi:id="_rFRRx8guEeurvNNWCb40yg" station="_rFRRs8guEeurvNNWCb40yg" location="_rFRRtMguEeurvNNWCb40yg" value="1"/>
+</telco:Plan>

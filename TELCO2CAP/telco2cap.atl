@@ -1,0 +1,262 @@
+module telco2cap;
+
+-- @path Telco=/TELCO2CAP/network_planning.ecore
+-- @path CAP=/TELCO2CAP/componentAllocation2.ecore
+
+create OUT: CAP from IN: Telco;
+
+helper def: allocation: CAP!AllocationProblem = OclUndefined;
+
+rule Main {
+	from plan: Telco!Plan
+	to ap: CAP!AllocationProblem (
+		ID <- plan.name,
+		components <- plan.station,
+		units <- plan.location,
+		resources <- thisModule.resolveTemp(plan, 'res1'),
+		resources <- thisModule.resolveTemp(plan, 'res2'),
+		resources <- thisModule.resolveTemp(plan, 'res3'),
+		resources <- thisModule.resolveTemp(plan, 'res4'),
+		resources <- thisModule.resolveTemp(plan, 'res5'),
+		resourceavailability <- plan.location->collect(e|thisModule.resolveTemp(e,'ra_Pout')),
+		resourceavailability <- plan.location->collect(e|thisModule.resolveTemp(e,'ra_CC')),
+		resourceavailability <- plan.location->collect(e|thisModule.resolveTemp(e,'ra_LCR')),
+		resourceavailability <- plan.location->collect(e|thisModule.resolveTemp(e,'ra_Demand')),
+		resourceavailability <- plan.location->collect(e|thisModule.resolveTemp(e,'ra_UnitUse')),
+		resourceconsumption <-  plan.pout->collect(e|thisModule.resolveTemp(e,'rc')),
+		resourceconsumption <-  plan.cc->collect(e|thisModule.resolveTemp(e,'rc')),
+		resourceconsumption <-  plan.lcr->collect(e|thisModule.resolveTemp(e,'rc')),
+		units <- thisModule.resolveTemp(plan, 'unit'),
+		resourceavailability <- thisModule.resolveTemp(plan, 'ra_Pout'),
+		resourceavailability <- thisModule.resolveTemp(plan, 'ra_CC'),
+		resourceavailability <- thisModule.resolveTemp(plan, 'ra_LCR'),
+		resourceavailability <- thisModule.resolveTemp(plan, 'ra_Demand'),
+		resourceavailability <- thisModule.resolveTemp(plan, 'ra_UnitUse')
+	),
+		res1: CAP!Resource (
+			resName <- 'Pout'
+		),
+		res2: CAP!Resource (
+			resName <- 'CC'
+		),
+		res3: CAP!Resource (
+			resName <- 'LCR'
+		),
+		res4: CAP!Resource (
+			resName <- 'Demand'
+		),
+		res5: CAP!Resource (
+			resName <- 'UnitUse'
+		),
+		unit: CAP!Unit(
+			unitName <- 'default_unit'
+		),
+		ra_Pout: CAP!ResourceAvailability (
+			amount <- 0,
+			unit <- thisModule.resolveTemp(Telco!Plan.allInstances().first(), 'unit'),
+			resource <- thisModule.resolveTemp(Telco!Plan.allInstances().first(), 'res1')
+		),
+		ra_CC: CAP!ResourceAvailability (
+			amount <- 0,
+			unit <- thisModule.resolveTemp(Telco!Plan.allInstances().first(), 'unit'),
+			resource <- thisModule.resolveTemp(Telco!Plan.allInstances().first(), 'res2')
+		),
+		ra_LCR: CAP!ResourceAvailability (
+			amount <- 0,
+			unit <- thisModule.resolveTemp(Telco!Plan.allInstances().first(), 'unit'),
+			resource <- thisModule.resolveTemp(Telco!Plan.allInstances().first(), 'res3')
+		),
+		ra_Demand: CAP!ResourceAvailability (
+			amount <- 0,
+			unit <- thisModule.resolveTemp(Telco!Plan.allInstances().first(), 'unit'),
+			resource <- thisModule.resolveTemp(Telco!Plan.allInstances().first(), 'res4')
+		),
+		ra_UnitUse: CAP!ResourceAvailability (
+			amount <- 0,
+			unit <- thisModule.resolveTemp(Telco!Plan.allInstances().first(), 'unit'),
+			resource <- thisModule.resolveTemp(Telco!Plan.allInstances().first(), 'res5')
+		)
+	do {
+		thisModule.allocation <- ap;
+		thisModule.TradeOffWeight();
+	}
+		
+}
+
+
+rule Unit {
+	from location:Telco!Location
+	to unit: CAP!Unit (
+		unitName <- location.Lid
+	),
+	ra_Pout: CAP!ResourceAvailability (
+		amount <- location.T_Pout,
+		unit <- location,
+		resource <- thisModule.resolveTemp(Telco!Plan.allInstances().first(), 'res1')
+	),
+	ra_CC: CAP!ResourceAvailability (
+		amount <- -1*location.T_CC,
+		unit <- location,
+		resource <- thisModule.resolveTemp(Telco!Plan.allInstances().first(), 'res2')
+	),
+	ra_LCR: CAP!ResourceAvailability (
+		amount <- -1*location.T_LCR,
+		unit <- location,
+		resource <- thisModule.resolveTemp(Telco!Plan.allInstances().first(), 'res3')
+	),
+	ra_Demand: CAP!ResourceAvailability (
+		amount <- -1*location.Demand,
+		unit <- location,
+		resource <- thisModule.resolveTemp(Telco!Plan.allInstances().first(), 'res4')
+	),
+	ra_UnitUse: CAP!ResourceAvailability (
+		amount <- 1,
+		unit <- location,
+		resource <- thisModule.resolveTemp(Telco!Plan.allInstances().first(), 'res5')
+	)
+}
+
+rule Component {
+	from station: Telco!Station
+	to component: CAP!Component (
+		compName <- station.Sid
+	)
+	
+	do{
+		for(l in Telco!Location.allInstances()) {
+				thisModule.ResourceConsumption_Capacity(station, l);
+				thisModule.ResourceConsumption_UnitUse(station, l);
+		}
+		thisModule.ResourceConsumption_DefaultUnit(station, 
+			thisModule.resolveTemp(Telco!Plan.allInstances().first(), 'unit'));
+	}
+	
+}
+
+rule ResourceConsumption_DefaultUnit(s:Telco!Station, l:Telco!Location){
+	to rc_Pout:CAP!ResourceConsumption (
+		amount <- 0,
+		component <- s,
+		unit <- l,
+		resource <- thisModule.resolveTemp(Telco!Plan.allInstances().first(), 'res1')
+	),
+	rc_CC:CAP!ResourceConsumption (
+		amount <- 0,
+		component <- s,
+		unit <- l,
+		resource <- thisModule.resolveTemp(Telco!Plan.allInstances().first(), 'res2')
+	),
+	rc_LCR:CAP!ResourceConsumption (
+		amount <- 0,
+		component <- s,
+		unit <- l,
+		resource <- thisModule.resolveTemp(Telco!Plan.allInstances().first(), 'res3')
+	),
+	rc_capacity:CAP!ResourceConsumption (
+		amount <- 0,
+		component <- s,
+		unit <- l,
+		resource <- thisModule.resolveTemp(Telco!Plan.allInstances().first(), 'res4')
+	),
+	rc_UnitUse:CAP!ResourceConsumption (
+		amount <- 0,
+		component <- s,
+		unit <- l,
+		resource <- thisModule.resolveTemp(Telco!Plan.allInstances().first(), 'res5')
+	)
+	
+	do {
+		thisModule.allocation.resourceconsumption <- rc_Pout;
+		thisModule.allocation.resourceconsumption <- rc_CC;
+		thisModule.allocation.resourceconsumption <- rc_LCR;
+		thisModule.allocation.resourceconsumption <- rc_capacity;
+		thisModule.allocation.resourceconsumption <- rc_UnitUse;
+	}	
+}
+
+rule ResourceConsumption_Capacity(s:Telco!Station, l:Telco!Location){
+	to rc_capacity:CAP!ResourceConsumption (
+		amount <- -1*s.Capacity,
+		component <- s,
+		unit <- l,
+		resource <- thisModule.resolveTemp(Telco!Plan.allInstances().first(), 'res4')
+	)	
+	
+	do {
+		thisModule.allocation.resourceconsumption <- rc_capacity;
+	}	
+}
+
+rule ResourceConsumption_UnitUse(s:Telco!Station, l:Telco!Location){
+	to rc_unituse:CAP!ResourceConsumption (
+		amount <- 1,
+		component <- s,
+		unit <- l,
+		resource <- thisModule.resolveTemp(Telco!Plan.allInstances().first(), 'res5')
+	)	
+	
+	do {
+		thisModule.allocation.resourceconsumption <- rc_unituse;
+	}	
+}
+
+rule TradeOffWeight() {
+	to tow_Pout: CAP!TradeOffWeight (
+		weight <- 0,
+		resource <- thisModule.resolveTemp(Telco!Plan.allInstances().first(), 'res1')
+	),
+	tow_CC: CAP!TradeOffWeight (
+		weight <- -1,
+		resource <- thisModule.resolveTemp(Telco!Plan.allInstances().first(), 'res2')
+	),
+	tow_LCR: CAP!TradeOffWeight (
+		weight <- -1,
+		resource <- thisModule.resolveTemp(Telco!Plan.allInstances().first(), 'res3')
+	),
+	tow_Demand: CAP!TradeOffWeight (
+		weight <- 0,
+		resource <- thisModule.resolveTemp(Telco!Plan.allInstances().first(), 'res4')
+	),
+	tow_UnitUse: CAP!TradeOffWeight (
+		weight <- 0,
+		resource <- thisModule.resolveTemp(Telco!Plan.allInstances().first(), 'res5')
+	)
+	
+	do {
+		thisModule.allocation.tradeOffvector <- tow_Pout;
+		thisModule.allocation.tradeOffvector <- tow_CC;
+		thisModule.allocation.tradeOffvector <- tow_LCR;
+		thisModule.allocation.tradeOffvector <- tow_Demand;
+		thisModule.allocation.tradeOffvector <- tow_UnitUse;
+	}
+}
+
+rule ResourceConsumption_Pout {
+	from rc1:Telco!Pout
+	to rc:CAP!ResourceConsumption (
+		amount <- rc1.value,
+		component <- rc1.station,
+		unit <- rc1.location,
+		resource <- thisModule.resolveTemp(Telco!Plan.allInstances().first(), 'res1')
+	)
+}
+
+rule ResourceConsumption_CC {
+	from rc1:Telco!CC
+	to rc:CAP!ResourceConsumption (
+		amount <- -1*rc1.value,
+		component <- rc1.station,
+		unit <- rc1.location,
+		resource <- thisModule.resolveTemp(Telco!Plan.allInstances().first(), 'res2')
+	)
+}
+
+rule ResourceConsumption_LCR {
+	from rc1:Telco!LCR
+	to rc:CAP!ResourceConsumption (
+		amount <- -1*rc1.value,
+		component <- rc1.station,
+		unit <- rc1.location,
+		resource <- thisModule.resolveTemp(Telco!Plan.allInstances().first(), 'res3')
+	)
+}
