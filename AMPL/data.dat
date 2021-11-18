@@ -1,0 +1,67 @@
+param nS=3;
+param nL=2;
+
+param Demand:=
+	1   40
+	2   20;
+
+param Capacity:=
+	1   100
+	2   50
+	3   30;
+
+param E_Cost:=
+	1   8
+	2   7
+	3   2;
+
+param S_Cost:=
+	1   9
+	2   5
+	3   3;	
+	
+param M_Cost:=
+	1   15
+	2   12
+	3   9;		
+	
+param D_Cost:=
+	1   45
+	2   50;
+	
+
+
+param Pout:
+      1 2:=
+  1   4 5 
+  2   3 2 
+  3   4 1;
+  
+param LCR:
+      1 2:=
+  1   90 95
+  2   63 22 
+  3   64 61; 
+
+param CC:
+      1 2:=
+  1   99 99
+  2   73 72
+  3   74 71;   
+  
+  
+ 
+param T_Pout:=
+	1   8
+	2   6
+	3   5;
+param T_LCR:=
+	1   55
+	2   60
+	3   80;
+param T_CC:=
+	1   60
+	2   75
+	3   65;	
+  
+	
