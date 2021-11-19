@@ -68,7 +68,7 @@ num_epochs = 15
 
 for epoch in range(num_epochs):
     for i, (inputs, outputs) in enumerate(train_loader):
-        predicted=preductir(input)
+        predicted=predictor(inputs)
         loss=f_loss(predicted,outputs)
         loss.backward()
         optimizer.step()
