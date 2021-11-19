@@ -1,0 +1,13 @@
+param t0;
+print time();
+let t0:=time();
+model planning.mod;
+data planning.dat;
+option solver cplex;
+solve;
+display X;
+print time();
+print time()-t0;
+print _total_solve_system_time+_total_solve_user_time;
+print _total_solve_elapsed_time;
+print time()-t0;
