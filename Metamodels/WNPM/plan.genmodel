@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/network_planning/src" modelPluginID="network_planning"
+    modelName="Plan" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>network_planning.ecore</foreignModel>
+  <genPackages prefix="Planning" disposableProviderFactory="true" ecorePackage="network_planning.ecore#/">
+    <genClasses ecoreClass="network_planning.ecore#//Station">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute network_planning.ecore#//Station/Capacity"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute network_planning.ecore#//Station/S_Cost"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute network_planning.ecore#//Station/M_Cost"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute network_planning.ecore#//Station/E_Cost"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute network_planning.ecore#//Station/Sid"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute network_planning.ecore#//Station/f"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute network_planning.ecore#//Station/Ps"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference network_planning.ecore#//Station/consumptionhistory"/>
+    </genClasses>
+    <genClasses ecoreClass="network_planning.ecore#//Location">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute network_planning.ecore#//Location/Demand"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute network_planning.ecore#//Location/T_Pout"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute network_planning.ecore#//Location/T_CC"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute network_planning.ecore#//Location/T_LCR"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute network_planning.ecore#//Location/D_Cost"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute network_planning.ecore#//Location/Lid"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference network_planning.ecore#//Location/usagehistory"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference network_planning.ecore#//Location/communicationchannel"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference network_planning.ecore#//Location/consumergroup"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute network_planning.ecore#//Location/XCoord"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute network_planning.ecore#//Location/YCoord"/>
+    </genClasses>
+    <genClasses ecoreClass="network_planning.ecore#//X">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference network_planning.ecore#//X/station"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference network_planning.ecore#//X/location"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute network_planning.ecore#//X/value"/>
+    </genClasses>
+    <genClasses ecoreClass="network_planning.ecore#//Plan">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute network_planning.ecore#//Plan/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference network_planning.ecore#//Plan/station"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference network_planning.ecore#//Plan/location"/>
+    </genClasses>
+    <genClasses ecoreClass="network_planning.ecore#//LCR"/>
+    <genClasses ecoreClass="network_planning.ecore#//Pout"/>
+    <genClasses ecoreClass="network_planning.ecore#//CC"/>
+    <genClasses ecoreClass="network_planning.ecore#//ConsumerGroup">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute network_planning.ecore#//ConsumerGroup/numUsers"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference network_planning.ecore#//ConsumerGroup/receivertype"/>
+    </genClasses>
+    <genClasses ecoreClass="network_planning.ecore#//UsageHistory">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute network_planning.ecore#//UsageHistory/day"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute network_planning.ecore#//UsageHistory/season"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute network_planning.ecore#//UsageHistory/temperature"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute network_planning.ecore#//UsageHistory/covidCases"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute network_planning.ecore#//UsageHistory/numUsers"/>
+    </genClasses>
+    <genClasses ecoreClass="network_planning.ecore#//ReceiverType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute network_planning.ecore#//ReceiverType/L"/>
+    </genClasses>
+    <genClasses ecoreClass="network_planning.ecore#//MaximalRatioCombining"/>
+    <genClasses ecoreClass="network_planning.ecore#//Fading">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference network_planning.ecore#//Fading/distribution"/>
+    </genClasses>
+    <genClasses ecoreClass="network_planning.ecore#//CoChannelInterference">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference network_planning.ecore#//CoChannelInterference/distribution"/>
+    </genClasses>
+    <genClasses ecoreClass="network_planning.ecore#//CommunicationChannel">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference network_planning.ecore#//CommunicationChannel/cci"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference network_planning.ecore#//CommunicationChannel/fading"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference network_planning.ecore#//CommunicationChannel/channelparameter"/>
+    </genClasses>
+    <genClasses ecoreClass="network_planning.ecore#//SelectionCombining"/>
+    <genClasses ecoreClass="network_planning.ecore#//EqualGainCombining"/>
+    <genClasses ecoreClass="network_planning.ecore#//Distribution"/>
+    <genClasses ecoreClass="network_planning.ecore#//Weibull"/>
+    <genClasses ecoreClass="network_planning.ecore#//KappaMu"/>
+    <genClasses ecoreClass="network_planning.ecore#//Rayleigh"/>
+    <genClasses ecoreClass="network_planning.ecore#//EtaMu"/>
+    <genClasses ecoreClass="network_planning.ecore#//NakagamiM"/>
+    <genClasses ecoreClass="network_planning.ecore#//PerformanceMetric">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference network_planning.ecore#//PerformanceMetric/station"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference network_planning.ecore#//PerformanceMetric/location"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute network_planning.ecore#//PerformanceMetric/value"/>
+    </genClasses>
+    <genClasses ecoreClass="network_planning.ecore#//ChannelParameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute network_planning.ecore#//ChannelParameter/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute network_planning.ecore#//ChannelParameter/value"/>
+    </genClasses>
+    <genClasses ecoreClass="network_planning.ecore#//Rician"/>
+    <genClasses ecoreClass="network_planning.ecore#//ConsumptionHistory">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute network_planning.ecore#//ConsumptionHistory/numUsers"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute network_planning.ecore#//ConsumptionHistory/energy"/>
+    </genClasses>
+    <genClasses ecoreClass="network_planning.ecore#//Diversity">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute network_planning.ecore#//Diversity/macro"/>
+    </genClasses>
+    <genClasses ecoreClass="network_planning.ecore#//MIMO"/>
+    <genClasses ecoreClass="network_planning.ecore#//ABEP"/>
+    <genClasses ecoreClass="network_planning.ecore#//AFD"/>
+    <genClasses ecoreClass="network_planning.ecore#//AlphaKappaMu"/>
+  </genPackages>
+</genmodel:GenModel>

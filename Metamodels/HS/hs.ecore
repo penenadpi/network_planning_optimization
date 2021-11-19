@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="hs" nsURI="http://www.example.org/hs" nsPrefix="hs">
+  <eClassifiers xsi:type="ecore:EClass" name="HandoverStrategy">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="step" upperBound="-1" eType="#//Step"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Response"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Step">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="response" eType="#//Response"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="trigger" eType="#//Trigger"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="order" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Transfer" eSuperTypes="#//Response">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dstSid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StandBy" eSuperTypes="#//Response"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ScaleUp" eSuperTypes="#//Response"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Trigger"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Failure" eSuperTypes="#//Trigger"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Overload" eSuperTypes="#//Trigger"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PerformanceDrop" eSuperTypes="#//Trigger">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="performanceMetric" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="threshold" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="relop" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LowUsersNumber" eSuperTypes="#//Trigger">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minUsers" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+</ecore:EPackage>

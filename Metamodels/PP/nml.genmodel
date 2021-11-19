@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    modelDirectory="/nml/src-gen" creationIcons="false" editDirectory="/nml.edit/src-gen"
+    editorDirectory="/nml.editor/src-gen" modelPluginID="nml" modelName="Nml" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    codeFormatting="true" importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0"
+    copyrightFields="false" operationReflection="true" importOrganizing="true">
+  <foreignModel>nml.ecore</foreignModel>
+  <testsDirectory xsi:nil="true"/>
+  <genPackages prefix="Nml" disposableProviderFactory="true" ecorePackage="nml.ecore#/">
+    <genClasses ecoreClass="nml.ecore#//Prediction">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference nml.ecore#//Prediction/dataset"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference nml.ecore#//Prediction/candidatemodel"/>
+    </genClasses>
+    <genClasses ecoreClass="nml.ecore#//Classification">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute nml.ecore#//Classification/numClasses"/>
+    </genClasses>
+    <genClasses ecoreClass="nml.ecore#//Regression"/>
+    <genClasses ecoreClass="nml.ecore#//Feature">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute nml.ecore#//Feature/name"/>
+    </genClasses>
+    <genClasses ecoreClass="nml.ecore#//Input"/>
+    <genClasses ecoreClass="nml.ecore#//Target"/>
+    <genClasses ecoreClass="nml.ecore#//LossFunction"/>
+    <genClasses ecoreClass="nml.ecore#//Optimizer">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute nml.ecore#//Optimizer/learningRate"/>
+    </genClasses>
+    <genClasses ecoreClass="nml.ecore#//Adam"/>
+    <genClasses ecoreClass="nml.ecore#//SGD"/>
+    <genClasses ecoreClass="nml.ecore#//Dataset">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference nml.ecore#//Dataset/feature"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute nml.ecore#//Dataset/filePath"/>
+    </genClasses>
+    <genClasses ecoreClass="nml.ecore#//BCE"/>
+    <genClasses ecoreClass="nml.ecore#//MSE"/>
+    <genClasses ecoreClass="nml.ecore#//CandidateModel">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference nml.ecore#//CandidateModel/layer"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference nml.ecore#//CandidateModel/lossfunction"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference nml.ecore#//CandidateModel/optimizer"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute nml.ecore#//CandidateModel/numEpochs"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute nml.ecore#//CandidateModel/batchSize"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute nml.ecore#//CandidateModel/modelName"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference nml.ecore#//CandidateModel/metric"/>
+    </genClasses>
+    <genClasses ecoreClass="nml.ecore#//Layer">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute nml.ecore#//Layer/numNodes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute nml.ecore#//Layer/activationType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute nml.ecore#//Layer/orderNumber"/>
+    </genClasses>
+    <genClasses ecoreClass="nml.ecore#//CrossEntropy"/>
+    <genClasses ecoreClass="nml.ecore#//Train"/>
+    <genClasses ecoreClass="nml.ecore#//Test"/>
+    <genClasses ecoreClass="nml.ecore#//Metric"/>
+    <genClasses ecoreClass="nml.ecore#//MRE"/>
+    <genClasses ecoreClass="nml.ecore#//MAE"/>
+    <genClasses ecoreClass="nml.ecore#//Accuracy"/>
+  </genPackages>
+</genmodel:GenModel>

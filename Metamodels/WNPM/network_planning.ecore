@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="planning" nsURI="http://www.example.org/planning" nsPrefix="planning">
+  <eClassifiers xsi:type="ecore:EClass" name="Station">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Capacity" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="S_Cost" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="M_Cost" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="E_Cost" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Sid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="f" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Ps" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="consumptionhistory" eType="#//ConsumptionHistory"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Location">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Demand" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="T_Pout" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="T_CC" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="T_LCR" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="D_Cost" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Lid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="usagehistory" eType="#//UsageHistory"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="communicationchannel" eType="#//CommunicationChannel"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="consumergroup" eType="#//ConsumerGroup"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="XCoord" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="YCoord" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="X">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="station" eType="#//Station"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="location" eType="#//Location"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Plan">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="station" upperBound="-1"
+        eType="#//Station" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="location" upperBound="-1"
+        eType="#//Location" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LCR" eSuperTypes="#//PerformanceMetric"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Pout" eSuperTypes="#//PerformanceMetric"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CC" eSuperTypes="#//PerformanceMetric"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ConsumerGroup">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="numUsers" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="receivertype" upperBound="-1"
+        eType="#//ReceiverType" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UsageHistory">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="day" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="season" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="temperature" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="covidCases" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="numUsers" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ReceiverType">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="L" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MaximalRatioCombining" eSuperTypes="#//Diversity"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Fading">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="distribution" eType="#//Distribution"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CoChannelInterference">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="distribution" eType="#//Distribution"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CommunicationChannel">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cci" upperBound="-1" eType="#//CoChannelInterference"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fading" upperBound="-1"
+        eType="#//Fading" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="channelparameter" upperBound="-1"
+        eType="#//ChannelParameter" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SelectionCombining" eSuperTypes="#//Diversity"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EqualGainCombining" eSuperTypes="#//Diversity"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Distribution"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Weibull" eSuperTypes="#//Distribution"/>
+  <eClassifiers xsi:type="ecore:EClass" name="KappaMu" eSuperTypes="#//Distribution"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Rayleigh" eSuperTypes="#//Distribution"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EtaMu" eSuperTypes="#//Distribution"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NakagamiM" eSuperTypes="#//Distribution"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PerformanceMetric">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="station" eType="#//Station"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="location" eType="#//Location"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ChannelParameter">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Rician" eSuperTypes="#//Distribution"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ConsumptionHistory">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="numUsers" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="energy" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Diversity" eSuperTypes="#//ReceiverType">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="macro" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MIMO" eSuperTypes="#//ReceiverType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ABEP" eSuperTypes="#//PerformanceMetric"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AFD" eSuperTypes="#//PerformanceMetric"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AlphaKappaMu" eSuperTypes="#//Distribution"/>
+</ecore:EPackage>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    modelDirectory="/hs/src-gen" creationIcons="false" editDirectory="/hs.edit/src-gen"
+    editorDirectory="/hs.editor/src-gen" modelPluginID="hs" modelName="Hs" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    codeFormatting="true" importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0"
+    copyrightFields="false" operationReflection="true" importOrganizing="true">
+  <foreignModel>hs.ecore</foreignModel>
+  <testsDirectory xsi:nil="true"/>
+  <genPackages prefix="Hs" disposableProviderFactory="true" ecorePackage="hs.ecore#/">
+    <genClasses ecoreClass="hs.ecore#//HandoverStrategy">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference hs.ecore#//HandoverStrategy/step"/>
+    </genClasses>
+    <genClasses ecoreClass="hs.ecore#//Response"/>
+    <genClasses ecoreClass="hs.ecore#//Step">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference hs.ecore#//Step/response"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hs.ecore#//Step/sid"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference hs.ecore#//Step/trigger"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hs.ecore#//Step/order"/>
+    </genClasses>
+    <genClasses ecoreClass="hs.ecore#//Transfer">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hs.ecore#//Transfer/dstSid"/>
+    </genClasses>
+    <genClasses ecoreClass="hs.ecore#//StandBy"/>
+    <genClasses ecoreClass="hs.ecore#//ScaleUp"/>
+    <genClasses ecoreClass="hs.ecore#//Trigger"/>
+    <genClasses ecoreClass="hs.ecore#//Failure"/>
+    <genClasses ecoreClass="hs.ecore#//Overload"/>
+    <genClasses ecoreClass="hs.ecore#//PerformanceDrop">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hs.ecore#//PerformanceDrop/performanceMetric"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hs.ecore#//PerformanceDrop/threshold"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hs.ecore#//PerformanceDrop/relop"/>
+    </genClasses>
+    <genClasses ecoreClass="hs.ecore#//LowUsersNumber">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hs.ecore#//LowUsersNumber/minUsers"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

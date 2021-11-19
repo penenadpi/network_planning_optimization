@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="nml" nsURI="http://www.example.org/nml" nsPrefix="nml">
+  <eClassifiers xsi:type="ecore:EClass" name="Prediction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataset" eType="#//Dataset"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="candidatemodel" upperBound="-1"
+        eType="#//CandidateModel" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Classification" eSuperTypes="#//Prediction">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="numClasses" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Regression" eSuperTypes="#//Prediction"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Feature">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Input" eSuperTypes="#//Feature"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Target" eSuperTypes="#//Feature"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LossFunction"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Optimizer">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="learningRate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Adam" eSuperTypes="#//Optimizer"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SGD" eSuperTypes="#//Optimizer"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Dataset">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="feature" upperBound="-1"
+        eType="#//Feature" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="filePath" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BCE" eSuperTypes="#//LossFunction"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MSE" eSuperTypes="#//LossFunction"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CandidateModel">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="layer" upperBound="-1"
+        eType="#//Layer" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lossfunction" eType="#//LossFunction"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="optimizer" eType="#//Optimizer"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="numEpochs" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="batchSize" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="modelName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="metric" eType="#//Metric"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Layer">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="numNodes" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="activationType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="orderNumber" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CrossEntropy" eSuperTypes="#//LossFunction"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Train" eSuperTypes="#//Dataset"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Test" eSuperTypes="#//Dataset"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Metric"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MRE" eSuperTypes="#//Metric"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MAE" eSuperTypes="#//Metric"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Accuracy" eSuperTypes="#//Metric"/>
+</ecore:EPackage>
